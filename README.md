@@ -42,7 +42,7 @@ https://www.tutorialworks.com/why-containers-stop/#:~:text=The%20main%20process%
 - 用 volume 掛載包 image 好像也不會減少 iamge 的大小
 - docker exec -it 需要是 container 存在才可以使用
 - docker 的思維似乎是你需要設置到可以運行服務，如果沒有 container 會 stop，這也就是說你沒辦法用 docker "只" 建立需要的環境, 在 host 處理檔案。要馬就在 host 自己處理不然就是都 docker 幫你處裡。
-- 光複製 nodemodule 就要 1min 至少. yarn install >200s, yarn build >280s
+- 光複製 nodemodule 就要 1min 至少. yarn install >200s, yarn build >280s. total build 900s...從 1.03g -> 1.61g
 
 
 檢查前10名當前資料夾的檔案大小
@@ -62,6 +62,12 @@ https://cloud.tencent.com/developer/article/1423873?from=article.detail.1446278
 
 # docker
 - docker 好用在可以容器化。難用在測試不容易，有情境卻沒有明確使用流程，都要先試錯之後打通路才好用。
+- 創建一個容器化的 mysql `docker run --name sql2 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=Dev127336 -d mysql`. 需要先建立 db 在使用 tableplus edit import 去 import *.sql 檔案注入資料。
+- 使用 DOCKER mysql stop/start container 資料庫異動是有存在的。
+
+# cors
+- 跨域一般在後端設置。
+- Response to preflight request doesn't pass access control check: The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'. The credentials mode of requests initiated by the XMLHttpRequest is controlled by the withCredentials attribute. 當出現的時候，是指前端帶上 credentials 時，後端伺服器必須明確指定是誰發送的，可以接收而不是用*字號。
 
 # case study
 - 一台 t3.medium Production 30gib 的機器，也是經常會遇到 no space 的情況。其空間使用狀況如下：
@@ -72,3 +78,12 @@ https://cloud.tencent.com/developer/article/1423873?from=article.detail.1446278
 - 6.5g usr 
 - 1.5g hone
 - 1.3g snap
+
+
+# Leetcode
+
+
+# DP concept
+- divide and conquer (將大問題化為多個小問題) 的觀念
+- 節省記憶體是動態規劃當中重要的課題！
+- https://web.ntnu.edu.tw/~algo/DynamicProgramming.html
